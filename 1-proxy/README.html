@@ -1,0 +1,58 @@
+<h1>Patterns: Proxy</h1>
+<p>Please read through this document completely before starting.</p>
+<h2>Homework Assignment Description</h2>
+<p>This assignment gives you a chance to implement the Proxy design pattern.</p>
+<h3>Prerequisite</h3>
+<ul>
+<li>Spring Framework</li>
+</ul>
+<h3>Requirements</h3>
+<p>You are to implement two proxies to resolve 2 separate problems.  The first is a performance issue that draws on your understanding of a virtual proxy.  The second is a permission issue that highlights the use case of a security proxy.</p>
+<h4>Existing Classes</h4>
+<ol>
+<li><code>WarehouseLegacySystem.java</code> interface defines an entry to a legacy warehouse system that is external to our system.</li>
+<li><code>ProductImpl.java</code> class is an implementation of the <code>Product.java</code> interface.  This is an existing implementation that you should not touch nor modify.  However, you are free to implement your own class to complete this assignment.</li>
+<li><code>ProductPersistenceImpl.java</code> class is the existing persistence class for retrieving <code>Product</code> information.</li>
+<li><code>SecretProductPersistenceImpl.java</code> is an existing persistence class that retrieves all the secret products that are in development in the company.</li>
+<li><code>PermissionUtil.java</code> is like a permission checker that you can call to check whether a user is an administrator.</li>
+<li><code>UserThreadLocal.java</code> is used to simulate a user making a call for the unit test.  You do not need to do anything to this class.</li>
+<li><code>ProductServiceImpl.java</code> is a class in the service layer to interact with the persistence layer.  It implements the <code>ProductService.java</code> interface.</li>
+<li><code>ProductServiceUtil.java</code> is a helper class that allow static invocation of the service methods.  You may or may not need to use this class.</li>
+</ol>
+<h4>Existing Configuration</h4>
+<ol>
+<li><code>spring.xml</code> contains the current bean definition.  You may modify this configuration file to accomplish the tasks.</li>
+<li><code>log4j.properties</code> is available if you need to configure logging for your development.</li>
+</ol>
+<h4>Homework Description</h4>
+<p>The current system is a product inventory system where users within the company can view the company's products.  This system needs two quick fixes to resolve two issues.</p>
+<h5>Performance Issue</h5>
+<p>After some digging, your team realized that there's a performance issue coming from the external legacy system tied to the warehouse.  Your team also found out that only a small percentage of users would <em>click</em> into a product detail view to check inventory.</p>
+<h6>Exercise 1 of 4</h6>
+<p>Implement a <code>ProductProxy</code> class to have all the information that comes from the internal persistence system but not the warehouse inventory information (i.e. <em>quantityLeft</em>).  Note that the corresponding unit test has a timeout of 2 seconds.</p>
+<h6>Exercise 2 of 4</h6>
+<p>Make sure that the <code>ProductProxy</code> can still retrieve the inventory information (<em>quantityLeft</em>) if necessary.</p>
+<h5>Security Issue</h5>
+<p>Currently, anyone within the system can view all the secret products.  The business wants to limit this to just admins for now so they can continue to update the secret products.</p>
+<h6>Exercise 3 of 4</h6>
+<p>Implement a security proxy that checks whether a user is an admin.  If so, let them access the <em>secret</em> products.  If not, return <strong>null</strong> when the method is called.</p>
+<h6>Exercise 4 of 4</h6>
+<p>Make sure an admin user can access the <em>secret</em> products.</p>
+<h4>Logging</h4>
+<p>If you need a logging framework to help with development, you can add a <code>org.slf4j.Logger</code> to your class and update the <code>log4j.properties</code> file in order to use the logging framework.</p>
+<h3>Unit Test</h3>
+<p>In order to complete the assignment, all the unit test methods in <code>ProxyTest.java</code> must run successfully.  You cannot modify the test file other than to remove the <code>@Ignore</code> annotation.
+To run the test, run <code>mvn clean test</code> in the directory that contains the <code>pom.xml</code> file.</p>
+<h2>Turning in Homework</h2>
+<p>When you've completed the homework assignment, you may turn in your homework by following the steps below.</p>
+<ol>
+<li>run <code>mvn clean</code>.</li>
+<li>zip up the <em>root</em> folder and rename it to <code>proxy - your_names.zip</code>.  The <em>root</em> folder is the one the <code>pom.xml</code> file is directly in.</li>
+<li>email it to <a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;w&#x69;&#108;&#115;&#111;&#x6e;&#x2e;&#109;&#x61;n&#x40;&#108;&#x69;&#102;&#x65;&#x72;&#x61;&#x79;&#46;&#99;o&#x6d;">&#119;&#105;l&#x73;&#x6f;&#x6e;&#x2e;&#109;&#97;&#110;&#64;&#x6c;&#105;&#x66;&#101;&#x72;&#97;&#121;&#x2e;&#99;&#x6f;&#109;</a></li>
+<li>CC your partner so I know who he or she is.</li>
+</ol>
+<h2>Further Reading</h2>
+<p>Here are some resources for additional reading:</p>
+<ol>
+<li><a href="http://sourcemaking.com/design_patterns/proxy">http://sourcemaking.com/design_patterns/proxy</a></li>
+</ol>
