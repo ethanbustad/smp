@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="productService" class="com.liferay.smp.service.impl.ProductServiceImpl" />
+	<bean id="productServiceUtil" class="com.liferay.smp.service.ProductServiceUtil" />
+	<bean id="productPersistence" class="com.liferay.smp.persistence.impl.ProductPersistenceImpl" />
+	<bean id="secretProductPersistence" class="com.liferay.smp.persistence.impl.SecretProductPersistenceImpl" />
+</beans>
