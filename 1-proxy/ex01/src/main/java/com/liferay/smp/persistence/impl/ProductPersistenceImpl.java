@@ -8,6 +8,7 @@ import com.liferay.smp.SystemException;
 import com.liferay.smp.legacy.WarehouseLegacySystem;
 import com.liferay.smp.model.Product;
 import com.liferay.smp.model.ProductImpl;
+import com.liferay.smp.model.ProductProxy;
 import com.liferay.smp.persistence.ProductPersistence;
 import com.liferay.smp.persistence.db.DataSource;
 
@@ -20,11 +21,19 @@ public class ProductPersistenceImpl implements ProductPersistence {
 
 	@Override
 	public Product findProductById(long productId) throws SystemException {
+		return findProductById(productId, false);
+	}
+
+	@Override
+	public Product findProductById(long productId, boolean loadExternal)
+		throws SystemException {
 
 		// Query for product info from local database;
-		Product product = getLocalProductInfo(productId);
+		Product product = getLocalProductInfo(productId, loadExternal);
 
-		product.setQuantityLeft(countProductById(productId));
+		if (loadExternal) {
+			product.setQuantityLeft(countProductById(productId));
+		}
 
 		return product;
 	}
@@ -48,14 +57,20 @@ public class ProductPersistenceImpl implements ProductPersistence {
 		return warehouseLegacySystem.getProductInventory(productId);
 	}
 
-	private Product getLocalProductInfo(long productId)
+	private Product getLocalProductInfo(long productId, boolean loadExternal)
 		throws SystemException {
 
 		Product product = null;
 
 		String[] results = dataSource.getData(PRODUCT_QUERY + productId);
 		if (results.length >= 4) {
-			product = new ProductImpl(productId);
+			if (loadExternal) {
+				product = new ProductImpl(productId);
+			}
+			else {
+				product = new ProductProxy(productId);
+			}
+
 			product.setName(results[0]);
 			product.setDescription(results[1]);
 			product.setModelNumber(results[2]);

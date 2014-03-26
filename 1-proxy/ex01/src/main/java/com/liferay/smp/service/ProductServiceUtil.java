@@ -20,4 +20,9 @@ public class ProductServiceUtil {
 	public static Product getProduct(long productId) {
 		return getService().getProduct(productId);
 	}
+
+	public static Product getProduct(long productId, boolean loadExternal) {
+		return getService().getProduct(productId, loadExternal);
+	}
+
 }

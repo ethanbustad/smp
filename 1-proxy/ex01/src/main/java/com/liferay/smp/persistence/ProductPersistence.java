@@ -7,4 +7,5 @@ public interface ProductPersistence {
 	public static final String PRODUCT_QUERY = "SELECT * FROM PRODUCT WHERE _ID = ";
 
 	public Product findProductById(long productId) throws SystemException;
+	public Product findProductById(long productId, boolean loadExternal) throws SystemException;
 }

@@ -29,6 +29,17 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public Product getProduct(long productId, boolean loadExternal) {
+		try {
+			return productPersistence.findProductById(productId, loadExternal);
+		}
+		catch (SystemException se) {
+			// handle exception
+		}
+		return null;
+	}
+
+	@Override
 	public List<Product> getSecretProducts() {
 		return secretProductPersistence.findAll();
 	}

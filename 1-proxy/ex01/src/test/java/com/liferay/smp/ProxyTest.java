@@ -63,7 +63,6 @@ public class ProxyTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test(timeout = 2000)
-	@Ignore
 	public void testVirtualProxy() throws Exception {
 		Product product = productService.getProduct(productId1);
 		assertNotNull(product);
@@ -72,7 +71,6 @@ public class ProxyTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test
-	@Ignore
 	public void testProductQuantityRetrieval() throws Exception {
 		Product product = productService.getProduct(productId2);
 		product.getQuantityLeft();
@@ -82,7 +80,6 @@ public class ProxyTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test
-	@Ignore
 	public void testSecretProductExclusion() throws Exception {
 		UserThreadLocal.setUserId(regUserId);
 		List<Product> secretProducts = productService.getSecretProducts();
@@ -91,7 +88,6 @@ public class ProxyTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test
-	@Ignore
 	public void testSecretProductPermission() throws Exception {
 		UserThreadLocal.setUserId(adminUserId);
 		List<Product> secretProducts = productService.getSecretProducts();
