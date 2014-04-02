@@ -8,5 +8,8 @@
 	<bean id="phoneConferenceService" class="com.liferay.smp.service.impl.PhoneConferenceServiceImpl" />
 	<bean id="webExMeetingService" class="com.liferay.smp.service.impl.WebExMeetingServiceImpl" />
 
-	<bean id="scheduler" class="" />
+	<bean id="scheduler" class="com.liferay.smp.event.scheduler.Scheduler" />
+	<bean id="onceWebExBuilder" class="com.liferay.smp.event.scheduler.OnceWebExEventBuilder" />
+	<bean id="dailyScrumBuilder" class="com.liferay.smp.event.scheduler.DailyScrumPhoneEventBuilder" />
+	<bean id="allHandsBuilder" class="com.liferay.smp.event.scheduler.QuarterlyAllHandsEventBuilder" />
 </beans>

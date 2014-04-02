@@ -91,14 +91,12 @@ public class BuilderTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test
-	@Ignore
 	public void testBasicSetup() throws Exception {
 		Object object = applicationContext.getBean("scheduler");
 		assertNotNull(object);
 	}
 
 	@Test
-	@Ignore
 	public void testOnceWebExEvent() throws Exception {
 
 		String name = "Demo over WebEx";
@@ -146,7 +144,6 @@ public class BuilderTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test
-	@Ignore
 	public void testDailyScrumEvent() throws Exception {
 
 		String name = "Daily IT Scrum";
@@ -197,7 +194,6 @@ public class BuilderTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test
-	@Ignore
 	public void testAllHandsEvent() throws Exception {
 
 		String name = "Quarterly All-Hands";
