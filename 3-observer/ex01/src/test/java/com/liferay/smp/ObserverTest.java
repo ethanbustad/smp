@@ -48,14 +48,12 @@ public class ObserverTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test
-	@Ignore
 	public void testBasicWarehouseService() throws Exception {
 		order.confirm();
 		verify(warehouseService).fulfillOrder(order);
 	}
 
 	@Test
-	@Ignore
 	public void testCustomerNotification() throws Exception {
 		order.confirm();
 		verify(warehouseService).fulfillOrder(order);
@@ -63,7 +61,6 @@ public class ObserverTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test
-	@Ignore
 	public void testAccountingService() throws Exception {
 		order.confirm();
 		verify(warehouseService).fulfillOrder(order);
@@ -73,7 +70,6 @@ public class ObserverTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test
-	@Ignore
 	public void testOrderedCall() throws Exception {
 		order.confirm();
 		InOrder inOrder = inOrder(accountingService, customerNotificationService, warehouseService);

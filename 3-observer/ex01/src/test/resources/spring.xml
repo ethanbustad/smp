@@ -4,7 +4,7 @@
   xsi:schemaLocation="
   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-<!-- 
+<!--
 	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 		<property name="locations">
 			<list>
@@ -14,7 +14,25 @@
 	</bean>
  -->
 
-	<bean id ="order" class="com.liferay.smp.model.OrderImpl" scope="prototype" />
+	<bean id="orderFactory" class="com.liferay.smp.model.OrderFactory" />
+
+	<bean id="accountingOrderObserver" class="com.liferay.smp.model.AccountingOrderObserver" />
+	<bean id="customerNotificationOrderObserver" class="com.liferay.smp.model.CustomerNotificationOrderObserver" />
+	<bean id="warehouseOrderObserver" class="com.liferay.smp.model.WarehouseOrderObserver" />
+
+	<bean id="orderObservers" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="accountingOrderObserver" />
+				<ref bean="customerNotificationOrderObserver" />
+				<ref bean="warehouseOrderObserver" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="order" factory-bean="orderFactory" factory-method="createOrder" scope="prototype">
+		<constructor-arg ref="orderObservers" />
+	</bean>
 
 	<bean id="warehouseService" class="com.liferay.smp.service.impl.WarehouseServiceImpl" />
 	<bean id="customerNotificationService" class="com.liferay.smp.service.impl.CustomerNotificationServiceImpl" />
