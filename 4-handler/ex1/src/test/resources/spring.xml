@@ -17,6 +17,19 @@
 		<property name="clientDomainsValue" value="${email.client.domains}" />
 	</bean>
 
-	<bean id="emailProcessor" class="">
+	<bean id="jiraHandler" class="com.liferay.smp.email.handler.impl.JIRAHandler">
+		<!-- <property name="successor" ref="spamHandler" /> -->
+	</bean>
+
+	<bean id="spamHandler" class="com.liferay.smp.email.handler.impl.SpamHandler">
+		<property name="successor" ref="jiraHandler" />
+	</bean>
+
+	<bean id="clientPriorityHandler" class="com.liferay.smp.email.handler.impl.ClientPriorityHandler">
+		<property name="successor" ref="spamHandler" />
+	</bean>
+
+	<bean id="emailProcessor" class="com.liferay.smp.email.IncomingEmailProcessor">
+		<property name="handler" ref="clientPriorityHandler" />
 	</bean>
 </beans>

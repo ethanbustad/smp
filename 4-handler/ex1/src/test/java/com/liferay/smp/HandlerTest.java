@@ -37,7 +37,6 @@ public class HandlerTest {
 	 * 1. Define the EmailHandler interface.
 	 */
 	@Test
-	@Ignore
 	public void testBaseSpringWiring() {
 		assertNotNull(applicationContext);
 		assertNotNull("Error retrieve EmailProcessor. Make sure bean is defined with the correct ID and class.", processor);
@@ -51,7 +50,6 @@ public class HandlerTest {
 	 * 3. Wire this handler to an email processor.
 	 */
 	@Test
-	@Ignore
 	public void testSpam() {
 
 		Email good = new Email();
@@ -92,7 +90,6 @@ public class HandlerTest {
 	 * 2. Chain this handler
 	 */
 	@Test
-	@Ignore
 	public void testClientPriority() {
 
 		Email normal = new Email();
@@ -123,7 +120,6 @@ public class HandlerTest {
 	 * 2. Chain this handler.
 	 */
 	@Test
-	@Ignore
 	public void testJIRA() {
 
 		Email nonJIRA = new Email();
@@ -155,7 +151,6 @@ public class HandlerTest {
 	 * 1. Fix this problem without writing any code.  (hint: only edit the spring.xml)
 	 */
 	@Test
-	@Ignore
 	public void testReorderingHandlers() {
 
 		Email client = new Email();
