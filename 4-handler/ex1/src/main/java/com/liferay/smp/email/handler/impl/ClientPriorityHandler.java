@@ -4,20 +4,13 @@ import com.liferay.smp.email.handler.EmailHandler;
 import com.liferay.smp.email.model.Email;
 import com.liferay.smp.email.util.EmailProperties;
 
-public class ClientPriorityHandler implements EmailHandler {
+public class ClientPriorityHandler extends EmailHandler {
 
-	public void processEmail(Email email) {
+	@Override
+	protected void process(Email email) {
 		if (_isFromClient(email)) {
 			email.setPriority(Email.Priority.URGENT);
 		}
-
-		if (successor != null) {
-			successor.processEmail(email);
-		}
-	}
-
-	public void setSuccessor(EmailHandler handler) {
-		successor = handler;
 	}
 
 	private boolean _isFromClient(Email email) {
@@ -33,7 +26,5 @@ public class ClientPriorityHandler implements EmailHandler {
 
 		return false;
 	}
-
-	private EmailHandler successor;
 
 }

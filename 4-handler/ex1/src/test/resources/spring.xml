@@ -18,7 +18,6 @@
 	</bean>
 
 	<bean id="jiraHandler" class="com.liferay.smp.email.handler.impl.JIRAHandler">
-		<!-- <property name="successor" ref="spamHandler" /> -->
 	</bean>
 
 	<bean id="spamHandler" class="com.liferay.smp.email.handler.impl.SpamHandler">

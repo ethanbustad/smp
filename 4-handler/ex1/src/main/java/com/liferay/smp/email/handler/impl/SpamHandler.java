@@ -4,27 +4,20 @@ import com.liferay.smp.email.handler.EmailHandler;
 import com.liferay.smp.email.model.Email;
 import com.liferay.smp.email.util.EmailProperties;
 
-public class SpamHandler implements EmailHandler {
+public class SpamHandler extends EmailHandler {
 
-	public void processEmail(Email email) {
-		if (_isPriorityOverride(email)) {
+	@Override
+	protected void process(Email email) {
+		if (_hasPriorityOverride(email)) {
 			return;
 		}
 
 		if (_isSpam(email)) {
 			email.setFolder(Email.Folder.SPAM);
 		}
-
-		if (successor != null) {
-			successor.processEmail(email);
-		}
 	}
 
-	public void setSuccessor(EmailHandler handler) {
-		successor = handler;
-	}
-
-	private boolean _isPriorityOverride(Email email) {
+	private boolean _hasPriorityOverride(Email email) {
 		return ((email.getPriority() == Email.Priority.URGENT) ||
 			(email.getPriority() == Email.Priority.HIGH) ||
 			(email.getPriority() == Email.Priority.LOW));
@@ -55,7 +48,5 @@ public class SpamHandler implements EmailHandler {
 
 		return false;
 	}
-
-	private EmailHandler successor;
 
 }
