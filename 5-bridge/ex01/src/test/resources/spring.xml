@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="auditContextFactory" class="com.liferay.smp.audit.AuditContextFactoryImpl" />
+
+	<bean id="userActionFactory" class="com.liferay.smp.model.UserActionFactoryImpl" />
+
+	<bean id="dBObjectFactory" class="com.liferay.smp.bigdata.DBObjectFactoryImpl" />
+
+	<bean id="printWriter" class="com.liferay.smp.io.PrintWriterImpl" />
+
+	<bean id="mongo" class="com.liferay.smp.bigdata.MongoClient" />
+
+	<bean id="dB" class="com.liferay.smp.bigdata.DBImpl" />
+
+	<bean id="remoteSystemService" class="com.liferay.smp.service.impl.RemoteSystemServiceImpl">
+	</bean>
+
+	<bean id="messageBoardService" class="com.liferay.smp.service.impl.MessageBoardServiceImpl">
+	</bean>
+</beans>
