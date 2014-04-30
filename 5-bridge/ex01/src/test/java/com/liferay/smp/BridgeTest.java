@@ -11,7 +11,6 @@ import com.liferay.smp.service.RemoteSystemService;
 public class BridgeTest extends AbstractBridgeTest {
 
 	@Test
-	@Ignore
 	public void testLogFileStore() throws Exception {
 		Date now = new Date();
 		exercise1Setup(now);
@@ -22,7 +21,6 @@ public class BridgeTest extends AbstractBridgeTest {
 	}
 
 	@Test
-	@Ignore
 	public void testUserActionOnMongo() throws Exception {
 		// Setup variables for this test
 

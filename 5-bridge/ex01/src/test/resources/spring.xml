@@ -16,9 +16,31 @@
 
 	<bean id="dB" class="com.liferay.smp.bigdata.DBImpl" />
 
+	<bean id="logFileStore" class="com.liferay.smp.audit.LogFileStore">
+		<property name="printWriter" ref="printWriter" />
+	</bean>
+
+	<bean id="generalAuditor" class="com.liferay.smp.audit.GeneralAuditor">
+		<property name="auditContextFactory" ref="auditContextFactory" />
+		<property name="auditStore" ref="logFileStore" />
+	</bean>
+
 	<bean id="remoteSystemService" class="com.liferay.smp.service.impl.RemoteSystemServiceImpl">
+		<property name="generalAuditor" ref="generalAuditor" />
+	</bean>
+
+	<bean id="noSQLStore" class="com.liferay.smp.audit.NoSQLStore">
+		<property name="dBObjectFactory" ref="dBObjectFactory" />
+		<property name="mongo" ref="mongo" />
+	</bean>
+
+	<bean id="userActionAuditor" class="com.liferay.smp.audit.UserActionAuditor">
+		<property name="auditContextFactory" ref="auditContextFactory" />
+		<property name="auditStore" ref="noSQLStore" />
 	</bean>
 
 	<bean id="messageBoardService" class="com.liferay.smp.service.impl.MessageBoardServiceImpl">
+		<property name="userActionAuditor" ref="userActionAuditor" />
+		<property name="userActionFactory" ref="userActionFactory" />
 	</bean>
 </beans>
